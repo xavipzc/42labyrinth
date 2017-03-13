@@ -1,0 +1,6 @@
+# Ignore all .o and binary
+*.o
+wolf3d
+
+# Ignore .DS_store file
+.DS_Store
