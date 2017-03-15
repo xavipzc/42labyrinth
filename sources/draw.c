@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/14 14:14:16 by PZC               #+#    #+#             */
-/*   Updated: 2017/03/14 18:19:31 by PZC              ###   ########.fr       */
+/*   Created: 2017/03/15 12:03:26 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/03/15 12:09:39 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	ft_put_pixel(t_env *e, int x, int y, int color)
 
 void	draw_vline(t_env *e, int x, int y1, int y2, int color)
 {
-	int y = 0;
+	int y;
 
+	y = 0;
 	e->view = (unsigned int*)mlx_get_data_addr(e->img_ptr, &e->img.bpp, &e->img.sl,\
 			&e->img.e);
 	while (y < y1)

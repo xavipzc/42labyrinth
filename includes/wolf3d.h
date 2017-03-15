@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/13 13:07:30 by PZC               #+#    #+#             */
-/*   Updated: 2017/03/14 18:09:51 by PZC              ###   ########.fr       */
+/*   Created: 2017/03/15 11:55:45 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/03/15 16:51:30 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,19 @@ typedef struct		s_env
 	double			cur_time;
 	double			old_time;
 	int				color;
-	int 			**map;
+	int				**map;
 }					t_env;
 
 void				draw_vline(t_env *e, int x, int y1, int y2, int color);
 void				ft_put_pixel(t_env *e, int x, int y, int color);
-int					loop_hook(t_env *e, int (*tab)[24][24]);
+int					readfile(t_env *e);
+int					loop_hook(t_env *e);
 int					key_hook(int key, t_env *e);
+int					key_press(int key, t_env *e);
 void				init_env(t_env *e);
 void				init_ray(t_env *e, int x);
-void				wall_color(t_env *e, int (*tab)[24][24]);
+void				wall_color(t_env *e);
 void				show_fps(t_env *e);
-
-unsigned			getTickCount(void);
+void				show_error(int n);
 
 #endif

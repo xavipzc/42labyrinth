@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/14 14:24:52 by PZC               #+#    #+#             */
-/*   Updated: 2017/03/14 14:31:08 by PZC              ###   ########.fr       */
+/*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
+/*   Updated: 2017/03/15 12:22:53 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@
 
 int		key_hook(int key, t_env *e)
 {
-	//printf("%d\n", key);
-	//if (key == 123 || key == 124 || key == 125 || key == 126)
-		//move(e, key);
 	if (key == 53)
 	{
 		mlx_destroy_window(e->mlx_ptr, e->mlx_win);
@@ -39,6 +36,15 @@ int		key_hook(int key, t_env *e)
 	}
 	return (0);
 }
+
+// int		key_press(int key, t_env *e)
+// {
+// 	if (key == 126)
+// 	{
+		
+// 	}
+// 	return (0);
+// }
 
 /*
 ** Mouse Position
