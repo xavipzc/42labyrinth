@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:16:23 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/15 11:55:38 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/16 00:15:56 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void			show_fps(t_env *e)
 	e->old_time = e->cur_time;
 	e->cur_time = get_tick_count();
 	frame_time = (e->cur_time - e->old_time) / 1000.0;
-	printf("FPS = %f\n", 1.0 / frame_time);
+	e->move_s = frame_time * 5.0;
+	e->rot_s = frame_time * 3.0;
 }

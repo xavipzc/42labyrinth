@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/15 12:22:53 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/16 00:15:16 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,17 @@ int		key_hook(int key, t_env *e)
 	return (0);
 }
 
-// int		key_press(int key, t_env *e)
-// {
-// 	if (key == 126)
-// 	{
-		
-// 	}
-// 	return (0);
-// }
+int		key_press(int key, t_env *e)
+{
+	if (key == 126)
+	{
+		if(!(e->map[(int)(POS_X + DIR_X * e->move_s)][(int)(POS_Y)]))
+			POS_X += DIR_X * e->move_s;
+		if(!(e->map[(int)(POS_X)][(int)(POS_Y + DIR_Y * e->move_s)]))
+			POS_Y += DIR_Y * e->move_s;
+	}
+	return (0);
+}
 
 /*
 ** Mouse Position

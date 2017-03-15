@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:55:45 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/15 16:51:30 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/16 00:03:59 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct		s_env
 	t_ray			r;
 	double			cur_time;
 	double			old_time;
+	double			move_s;
+	double			rot_s;
 	int				color;
 	int				**map;
 }					t_env;
