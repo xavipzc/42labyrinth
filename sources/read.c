@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 13:05:31 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/16 16:28:15 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/17 12:08:24 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			readfile(t_env *e)
 	char	*line;
 
 	i = 0;
-	fd = open("room.wolf", O_RDONLY);
+	fd = open("levels/lvl_1.wolf", O_RDONLY);
 	ret = get_next_line(fd, &line);
 	init_map(e, line);
 	ft_strdel(&line);

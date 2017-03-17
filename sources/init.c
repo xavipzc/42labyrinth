@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/16 19:57:46 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/17 15:00:26 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static void	init_player(t_env *e)
 	CAMERA_X = 0;
 }
 
-void		init_env(t_env *e)
+void		init_env(t_env *e, char *bin)
 {
 	e->mlx_ptr = mlx_init();
-	e->mlx_win = mlx_new_window(e->mlx_ptr, W_WIDTH, W_HEIGHT, "Wolf3d");
+	e->mlx_win = mlx_new_window(e->mlx_ptr, W_WIDTH, W_HEIGHT, bin);
 	e->img_ptr = NULL;
 	e->img.width = W_WIDTH;
 	e->img.height = W_HEIGHT;
@@ -50,7 +50,7 @@ void		init_env(t_env *e)
 }
 
 /*
-** Ray.Pos XY - The ray positoin is initially set to the position of the player.
+** Ray.Pos XY - The ray positoin is initially set to the position of the player
 ** Ray.Dir XY - The Ray direction
 ** Map XY - The Ray position in the 2D map
 ** Hit - Boolean to know if a wall is hitting
@@ -59,14 +59,14 @@ void		init_env(t_env *e)
 
 void		init_ray(t_env *e, int x)
 {
+	HIT = 0;
 	CAMERA_X = 2 * x / (double)W_WIDTH - 1;
-	e->p.hit = 0;
-	e->r.pos.x = POS_X;
-	e->r.pos.y = POS_Y;
-	e->r.dir.x = DIR_X + PLANE_X * CAMERA_X;
-	e->r.dir.y = DIR_Y + PLANE_Y * CAMERA_X;
-	e->r.map.x = (int)e->r.pos.x;
-	e->r.map.y = (int)e->r.pos.y;
-	e->r.d_dist.x = sqrt(1 + (e->r.dir.y * e->r.dir.y) / (e->r.dir.x * e->r.dir.x));
-	e->r.d_dist.y = sqrt(1 + (e->r.dir.x * e->r.dir.x) / (e->r.dir.y * e->r.dir.y));
+	R_POS_X = POS_X;
+	R_POS_Y = POS_Y;
+	R_DIR_X = DIR_X + PLANE_X * CAMERA_X;
+	R_DIR_Y = DIR_Y + PLANE_Y * CAMERA_X;
+	R_MAP_X = (int)R_POS_X;
+	R_MAP_Y = (int)R_POS_Y;
+	R_DELTAD_X = sqrt(1 + (R_DIR_Y * R_DIR_Y) / (R_DIR_X * R_DIR_X));
+	R_DELTAD_Y = sqrt(1 + (R_DIR_X * R_DIR_X) / (R_DIR_Y * R_DIR_Y));
 }

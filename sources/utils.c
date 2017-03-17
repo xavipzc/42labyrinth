@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:16:23 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/16 15:34:57 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/17 14:37:51 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void			get_fps(t_env *e)
 	OLD_TIME = TIME;
 	TIME = get_tick_count();
 	frame_time = (TIME - OLD_TIME) / 1000.0;
-	M_SPEED = frame_time * 5.0;
-	R_SPEED = frame_time * 2.0;
+	MOVE_SPEED = frame_time * 5.0;
+	ROT_SPEED = frame_time * 2.0;
 }

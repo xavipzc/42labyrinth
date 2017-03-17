@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/16 14:44:50 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/17 14:25:10 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,12 @@ int		key_release(int key, t_env *e)
 		mlx_destroy_window(e->mlx_ptr, e->mlx_win);
 		exit(EXIT_SUCCESS);
 	}
+	return (0);
+}
+
+int		quit_window(t_env *e)
+{
+	mlx_destroy_window(e->mlx_ptr, e->mlx_win);
+	exit(EXIT_SUCCESS);
 	return (0);
 }

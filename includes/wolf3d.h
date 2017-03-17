@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:55:45 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/16 16:24:42 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/17 14:55:52 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,31 @@
 # define POS_Y		e->p.pos.y
 # define DIR_X		e->p.dir.x
 # define DIR_Y		e->p.dir.y
+# define STEP_X		e->p.step.x
+# define STEP_Y		e->p.step.y
+# define SIDE		e->p.side
+# define HIT		e->p.hit
 # define PLANE_X	e->p.plane.x
 # define PLANE_Y	e->p.plane.y
 # define CAMERA_X	e->p.cam.x
 # define TIME		e->cur_time
 # define OLD_TIME	e->old_time
-# define M_SPEED	e->move_s
-# define R_SPEED	e->rot_s
+# define MOVE_SPEED	e->move_s
+# define ROT_SPEED	e->rot_s
+
+# define R_POS_X	e->r.pos.x
+# define R_POS_Y	e->r.pos.y
+# define R_DIR_X	e->r.dir.x
+# define R_DIR_Y	e->r.dir.y
+# define R_MAP_X	e->r.map.x
+# define R_MAP_Y	e->r.map.y
+# define R_SIDED_X	e->r.s_dist.x
+# define R_SIDED_Y	e->r.s_dist.y
+# define R_DELTAD_X	e->r.d_dist.x
+# define R_DELTAD_Y	e->r.d_dist.y
+# define R_LINE_H	e->r.line_h
+# define R_Y_START	e->r.y_start
+# define R_Y_END	e->r.y_end
 
 # define MOVE_UP	e->k.move_up
 # define MOVE_DOWN	e->k.move_down
@@ -121,13 +139,14 @@ typedef struct		s_env
 	int				color;
 }					t_env;
 
-void				draw_vline(t_env *e, int x, int y1, int y2, int color);
+void				draw_vline(t_env *e, int x);
 void				ft_put_pixel(t_env *e, int x, int y, int color);
 int					readfile(t_env *e);
 int					loop_hook(t_env *e);
 int					key_press(int key, t_env *e);
 int					key_release(int key, t_env *e);
-void				init_env(t_env *e);
+int					quit_window(t_env *e);
+void				init_env(t_env *e, char *bin);
 void				init_ray(t_env *e, int x);
 void				wall_color(t_env *e);
 void				get_fps(t_env *e);

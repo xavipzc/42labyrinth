@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:25:17 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/16 20:05:27 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/17 14:56:19 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,46 @@
 
 static void	ray_direction(t_env *e)
 {
-	if (e->r.dir.x < 0)
+	if (R_DIR_X < 0)
 	{
-		e->p.step.x = -1;
-		e->r.s_dist.x = (e->r.pos.x - e->r.map.x) * e->r.d_dist.x;
+		STEP_X = -1;
+		R_SIDED_X = (R_POS_X - R_MAP_X) * R_DELTAD_X;
 	}
 	else
 	{
-		e->p.step.x = 1;
-		e->r.s_dist.x = (e->r.map.x + 1.0 - e->r.pos.x) * e->r.d_dist.x;
+		STEP_X = 1;
+		R_SIDED_X = (R_MAP_X + 1.0 - R_POS_X) * R_DELTAD_X;
 	}
-	if (e->r.dir.y < 0)
+	if (R_DIR_Y < 0)
 	{
-		e->p.step.y = -1;
-		e->r.s_dist.y = (e->r.pos.y - e->r.map.y) * e->r.d_dist.y;
+		STEP_Y = -1;
+		R_SIDED_Y = (R_POS_Y - R_MAP_Y) * R_DELTAD_Y;
 	}
 	else
 	{
-		e->p.step.y = 1;
-		e->r.s_dist.y = (e->r.map.y + 1.0 - e->r.pos.y) * e->r.d_dist.y;
+		STEP_Y = 1;
+		R_SIDED_Y = (R_MAP_Y + 1.0 - R_POS_Y) * R_DELTAD_Y;
 	}
 }
 
 static void	dda(t_env *e)
 {
-	while (e->p.hit == 0)
+	while (HIT == 0)
 	{
-		if (e->r.s_dist.x < e->r.s_dist.y)
+		if (R_SIDED_X < R_SIDED_Y)
 		{
-			e->r.s_dist.x += e->r.d_dist.x;
-			e->r.map.x += e->p.step.x;
-			e->p.side = 0;
+			R_SIDED_X += R_DELTAD_X;
+			R_MAP_X += STEP_X;
+			SIDE = 0;
 		}
 		else
 		{
-			e->r.s_dist.y += e->r.d_dist.y;
-			e->r.map.y += e->p.step.y;
-			e->p.side = 1;
+			R_SIDED_Y += R_DELTAD_Y;
+			R_MAP_Y += STEP_Y;
+			SIDE = 1;
 		}
-		if (MAP[e->r.map.x][e->r.map.y] > 0)
-			e->p.hit = 1;
+		if (MAP[R_MAP_X][R_MAP_Y] > 0)
+			HIT = 1;
 	}
 }
 
@@ -61,17 +61,17 @@ static void	calculate(t_env *e)
 {
 	double wall_dist;
 
-	if (e->p.side == 0)
-		wall_dist = fabs((e->r.map.x - e->r.pos.x + (1 - e->p.step.x) / 2) / e->r.dir.x);
+	if (SIDE == 0)
+		wall_dist = fabs((R_MAP_X - R_POS_X + (1 - STEP_X) / 2) / R_DIR_X);
 	else
-		wall_dist = fabs((e->r.map.y - e->r.pos.y + (1 - e->p.step.y) / 2) / e->r.dir.y);
-	e->r.line_h = abs((int)(W_HEIGHT / wall_dist));
-	e->r.y_start = -e->r.line_h / 2 + W_HEIGHT / 2;
-	if (e->r.y_start < 0)
-		e->r.y_start = 0;
-	e->r.y_end = e->r.line_h / 2 + W_HEIGHT / 2;
-	if (e->r.y_end >= W_HEIGHT)
-		e->r.y_end = W_HEIGHT - 1;
+		wall_dist = fabs((R_MAP_Y - R_POS_Y + (1 - STEP_Y) / 2) / R_DIR_Y);
+	R_LINE_H = abs((int)(W_HEIGHT / wall_dist));
+	R_Y_START = -R_LINE_H / 2 + W_HEIGHT / 2;
+	if (R_Y_START < 0)
+		R_Y_START = 0;
+	R_Y_END = R_LINE_H / 2 + W_HEIGHT / 2;
+	if (R_Y_END >= W_HEIGHT)
+		R_Y_END = W_HEIGHT - 1;
 }
 
 int			loop_hook(t_env *e)
@@ -89,7 +89,7 @@ int			loop_hook(t_env *e)
 		dda(e);
 		calculate(e);
 		wall_color(e);
-		draw_vline(e, x, e->r.y_start, e->r.y_end, e->color);
+		draw_vline(e, x);
 		x++;
 	}
 	get_fps(e);

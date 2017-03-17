@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
+#    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/16 18:25:13 by xpouzenc          #+#    #+#              #
-#    Updated: 2017/03/16 12:42:01 by PZC              ###   ########.fr        #
+#    Updated: 2017/03/17 12:07:05 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME = wolf3d
 SRCDIR = sources
 OBJDIR = objs
 INCDIR = includes\
-		 /usr/X11/include\
+		 /usr/local/include\
 		 libft/includes\
 
 # SOURCES
@@ -40,7 +40,7 @@ SRCS = \
 OBJS = $(SRC:.c=.o)
 
 # PREFIXES
-MLIBX =	-L/usr/X11/lib -lmlx -lm -framework OpenGL -framework AppKit
+MLIBX =	-L/usr/local/lib -lmlx -lm -framework OpenGL -framework AppKit
 LIBFT = -Llibft/ -lft
 
 # PATHS FOREACH
