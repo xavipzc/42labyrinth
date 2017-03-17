@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:16:23 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/16 00:15:56 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/16 15:34:57 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static unsigned	get_tick_count(void)
 ** frame_time is the time this frame has taken, in seconds
 */
 
-void			show_fps(t_env *e)
+void			get_fps(t_env *e)
 {
 	double frame_time;
 
-	e->old_time = e->cur_time;
-	e->cur_time = get_tick_count();
-	frame_time = (e->cur_time - e->old_time) / 1000.0;
-	e->move_s = frame_time * 5.0;
-	e->rot_s = frame_time * 3.0;
+	OLD_TIME = TIME;
+	TIME = get_tick_count();
+	frame_time = (TIME - OLD_TIME) / 1000.0;
+	M_SPEED = frame_time * 5.0;
+	R_SPEED = frame_time * 2.0;
 }

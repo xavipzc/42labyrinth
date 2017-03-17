@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:55:45 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/16 00:03:59 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/16 16:24:42 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define W_WIDTH  	800
 # define W_HEIGHT 	600
+# define MAP		e->m.map
+
 # define POS_X		e->p.pos.x
 # define POS_Y		e->p.pos.y
 # define DIR_X		e->p.dir.x
@@ -30,6 +32,16 @@
 # define PLANE_X	e->p.plane.x
 # define PLANE_Y	e->p.plane.y
 # define CAMERA_X	e->p.cam.x
+# define TIME		e->cur_time
+# define OLD_TIME	e->old_time
+# define M_SPEED	e->move_s
+# define R_SPEED	e->rot_s
+
+# define MOVE_UP	e->k.move_up
+# define MOVE_DOWN	e->k.move_down
+# define MOVE_LEFT	e->k.move_left
+# define MOVE_RIGHT	e->k.move_right
+# define SPEEDX2	e->k.speed
 
 typedef struct		s_coord
 {
@@ -75,33 +87,51 @@ typedef struct		s_img
 	int				sl;
 }					t_img;
 
+typedef struct		s_key
+{
+	int				move_up;
+	int				move_down;
+	int				move_left;
+	int				move_right;
+	int				speed;
+}					t_key;
+
+typedef struct		s_map
+{
+	int				**map;
+	int				width;
+	int				height;
+}					t_map;
+
 typedef struct		s_env
 {
 	void			*mlx_ptr;
 	void			*mlx_win;
 	void			*img_ptr;
 	unsigned int	*view;
+	t_map			m;
 	t_img			img;
 	t_player		p;
 	t_ray			r;
+	t_key			k;
 	double			cur_time;
 	double			old_time;
 	double			move_s;
 	double			rot_s;
 	int				color;
-	int				**map;
 }					t_env;
 
 void				draw_vline(t_env *e, int x, int y1, int y2, int color);
 void				ft_put_pixel(t_env *e, int x, int y, int color);
 int					readfile(t_env *e);
 int					loop_hook(t_env *e);
-int					key_hook(int key, t_env *e);
 int					key_press(int key, t_env *e);
+int					key_release(int key, t_env *e);
 void				init_env(t_env *e);
 void				init_ray(t_env *e, int x);
 void				wall_color(t_env *e);
-void				show_fps(t_env *e);
+void				get_fps(t_env *e);
+void				move_player(t_env *e);
 void				show_error(int n);
 
 #endif

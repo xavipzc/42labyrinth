@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:25:17 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/15 16:50:58 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/16 20:05:27 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	dda(t_env *e)
 			e->r.map.y += e->p.step.y;
 			e->p.side = 1;
 		}
-		if (e->map[e->r.map.x][e->r.map.y] > 0)
+		if (MAP[e->r.map.x][e->r.map.y] > 0)
 			e->p.hit = 1;
 	}
 }
@@ -79,6 +79,8 @@ int			loop_hook(t_env *e)
 	int		x;
 
 	x = 0;
+	if (e->img_ptr != NULL)
+		mlx_destroy_image(e->mlx_ptr, e->img_ptr);
 	e->img_ptr = mlx_new_image(e->mlx_ptr, e->img.width, e->img.height);
 	while (x < W_WIDTH)
 	{
@@ -90,7 +92,8 @@ int			loop_hook(t_env *e)
 		draw_vline(e, x, e->r.y_start, e->r.y_end, e->color);
 		x++;
 	}
-	show_fps(e);
+	get_fps(e);
+	move_player(e);
 	mlx_put_image_to_window(e->mlx_ptr, e->mlx_win, e->img_ptr, 0, 0);
 	return (0);
 }

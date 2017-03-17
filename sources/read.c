@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 13:05:31 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/15 16:55:15 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/16 16:28:15 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static int	fill_tab(t_env *e, char *line, int h)
 
 	i = 0;
 	j = 0;
-	e->map[h][j] = ft_atoi(&line[i]);
+	MAP[h][j] = ft_atoi(&line[i]);
 	j++;
-	while (j < 24)
+	while (j < e->m.height)
 	{
 		while (line[i] != ',')
 			i++;
 		i++;
-		e->map[h][j] = ft_atoi(&line[i]);
+		MAP[h][j] = ft_atoi(&line[i]);
 		j++;
 	}
 	return (0);
@@ -34,23 +34,21 @@ static int	fill_tab(t_env *e, char *line, int h)
 
 static int	init_map(t_env *e, char *line)
 {
-	int	height;
-	int	width;
 	int	i;
 
-	height = ft_atoi(line);
-	e->map = (int**)malloc(sizeof(e->map) * height);
+	e->m.height = ft_atoi(line);
+	MAP = (int**)malloc(sizeof(MAP) * e->m.height);
 	i = 0;
 	while (line[i] != ',')
 		i++;
-	width = ft_atoi(&line[i + 1]);
+	e->m.width = ft_atoi(&line[i + 1]);
 	i = 0;
-	while (i < height)
+	while (i < e->m.height)
 	{
-		e->map[i] = (int*)malloc(sizeof(e->map[i]) * width);
+		MAP[i] = (int*)malloc(sizeof(MAP[i]) * e->m.width);
 		i++;
 	}
-	e->map[i] = NULL;
+	MAP[i] = NULL;
 	return (0);
 }
 
@@ -61,7 +59,6 @@ int			readfile(t_env *e)
 	int		ret;
 	char	*line;
 
-	printf("%f\n", e->cur_time);
 	i = 0;
 	fd = open("room.wolf", O_RDONLY);
 	ret = get_next_line(fd, &line);
@@ -72,8 +69,7 @@ int			readfile(t_env *e)
 		ret = get_next_line(fd, &line);
 		if (ret == -1)
 			show_error(3);
-		ft_putendl(line);
-		if (i < 24)
+		if (i < e->m.height)
 			fill_tab(e, line, i);
 		ft_strdel(&line);
 		i++;

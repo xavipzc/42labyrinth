@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/15 12:10:59 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/16 19:57:46 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,19 @@ void		init_env(t_env *e)
 {
 	e->mlx_ptr = mlx_init();
 	e->mlx_win = mlx_new_window(e->mlx_ptr, W_WIDTH, W_HEIGHT, "Wolf3d");
+	e->img_ptr = NULL;
 	e->img.width = W_WIDTH;
 	e->img.height = W_HEIGHT;
 	e->img.e = 0;
 	e->img.bpp = 32;
 	e->img.sl = e->img.width * 4;
-	e->cur_time = 0;
-	e->old_time = 0;
+	TIME = 0;
+	OLD_TIME = 0;
+	MOVE_UP = 0;
+	MOVE_DOWN = 0;
+	MOVE_LEFT = 0;
+	MOVE_RIGHT = 0;
+	SPEEDX2 = 0;
 	init_player(e);
 }
 
