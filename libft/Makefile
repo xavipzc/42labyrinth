@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
+#    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/06 18:01:20 by xpouzenc          #+#    #+#              #
-#    Updated: 2017/02/16 18:52:24 by xpouzenc         ###   ########.fr        #
+#    Updated: 2017/03/22 17:01:16 by PZC              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRCS = ft_memset.c \
 	   ft_strndup.c \
 	   ft_swap.c \
 	   ft_putnendl.c \
+	   ft_putnendl_fd.c \
 	   get_next_line.c
 
 OBJS = $(SRCS:.c=.o)

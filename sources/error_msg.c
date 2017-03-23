@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 15:35:37 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/15 14:10:33 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/22 12:44:28 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ static void	malloc_error(void)
 
 static void	read_error(void)
 {
-	ft_putendl_fd("read error", 2);
+	ft_putendl_fd("read map error", 2);
+	exit(1);
+}
+
+static void	mlx_error(void)
+{
+	ft_putendl_fd("mlx error", 2);
 	exit(1);
 }
 
@@ -37,4 +43,6 @@ void		show_error(int n)
 		malloc_error();
 	if (n == 3)
 		read_error();
+	if (n == 4)
+		mlx_error();
 }

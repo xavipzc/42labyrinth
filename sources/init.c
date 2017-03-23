@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/17 15:00:26 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:37:24 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ static void	init_player(t_env *e)
 
 void		init_env(t_env *e, char *bin)
 {
-	e->mlx_ptr = mlx_init();
-	e->mlx_win = mlx_new_window(e->mlx_ptr, W_WIDTH, W_HEIGHT, bin);
+	if (!(e->mlx_ptr = mlx_init()))
+		show_error(4);
+	if (!(e->mlx_win = mlx_new_window(e->mlx_ptr, W_WIDTH, W_HEIGHT, bin)))
+		show_error(4);
 	e->img_ptr = NULL;
 	e->img.width = W_WIDTH;
 	e->img.height = W_HEIGHT;

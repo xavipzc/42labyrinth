@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:16:23 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/17 14:37:51 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/22 17:14:39 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,31 @@ void			get_fps(t_env *e)
 	frame_time = (TIME - OLD_TIME) / 1000.0;
 	MOVE_SPEED = frame_time * 5.0;
 	ROT_SPEED = frame_time * 2.0;
+}
+
+void			reset_game(t_env *e)
+{
+	POS_X = 22;
+	POS_Y = 12;
+	DIR_X = -1;
+	DIR_Y = 0;
+	PLANE_X = 0;
+	PLANE_Y = 0.66;
+	CAMERA_X = 0;
+	e->menu.on = 0;
+}
+
+void			save_game(t_env *e)
+{
+	int fd;
+
+	fd = open("save.wolf", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+	ft_putnendl_fd((int)POS_X, fd);
+	ft_putnendl_fd((int)POS_Y, fd);
+	ft_putnendl_fd((int)DIR_X, fd);
+	ft_putnendl_fd((int)DIR_Y, fd);
+	ft_putnendl_fd((int)PLANE_X, fd);
+	ft_putnendl_fd((int)PLANE_Y, fd);
+	ft_putnendl_fd((int)CAMERA_X, fd);
+	close(fd);
 }

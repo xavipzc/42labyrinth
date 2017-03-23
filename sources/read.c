@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 13:05:31 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/17 12:08:24 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/22 13:29:37 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	fill_tab(t_env *e, char *line, int h)
 	j = 0;
 	MAP[h][j] = ft_atoi(&line[i]);
 	j++;
-	while (j < e->m.height)
+	while (j < e->m.width)
 	{
 		while (line[i] != ',')
 			i++;
@@ -36,8 +36,10 @@ static int	init_map(t_env *e, char *line)
 {
 	int	i;
 
+	MAP = NULL;
 	e->m.height = ft_atoi(line);
-	MAP = (int**)malloc(sizeof(MAP) * e->m.height);
+	if (!(MAP = (int**)malloc(sizeof(MAP) * e->m.height)))
+		show_error(2);
 	i = 0;
 	while (line[i] != ',')
 		i++;
@@ -45,7 +47,8 @@ static int	init_map(t_env *e, char *line)
 	i = 0;
 	while (i < e->m.height)
 	{
-		MAP[i] = (int*)malloc(sizeof(MAP[i]) * e->m.width);
+		if (!(MAP[i] = (int*)malloc(sizeof(MAP[i]) * e->m.width)))
+			show_error(2);
 		i++;
 	}
 	MAP[i] = NULL;
@@ -60,7 +63,8 @@ int			readfile(t_env *e)
 	char	*line;
 
 	i = 0;
-	fd = open("levels/lvl_1.wolf", O_RDONLY);
+	if ((fd = open("levels/lvl_1.wolf", O_RDONLY)) == -1)
+		show_error(3);
 	ret = get_next_line(fd, &line);
 	init_map(e, line);
 	ft_strdel(&line);
@@ -75,6 +79,6 @@ int			readfile(t_env *e)
 		i++;
 	}
 	if (close(fd) == -1)
-		return (-1);
+		show_error(3);
 	return (0);
 }

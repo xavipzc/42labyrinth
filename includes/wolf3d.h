@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:55:45 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/17 14:55:52 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:55:46 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,13 @@ typedef struct		s_map
 	int				height;
 }					t_map;
 
+typedef struct		s_menu
+{
+	void			*menu_ptr;
+	unsigned int	*menu_img;
+	int				on;
+}					t_menu;
+
 typedef struct		s_env
 {
 	void			*mlx_ptr;
@@ -132,6 +139,7 @@ typedef struct		s_env
 	t_player		p;
 	t_ray			r;
 	t_key			k;
+	t_menu			menu;
 	double			cur_time;
 	double			old_time;
 	double			move_s;
@@ -140,7 +148,7 @@ typedef struct		s_env
 }					t_env;
 
 void				draw_vline(t_env *e, int x);
-void				ft_put_pixel(t_env *e, int x, int y, int color);
+void				ft_put_pixel(unsigned int* img, int x, int y, int color);
 int					readfile(t_env *e);
 int					loop_hook(t_env *e);
 int					key_press(int key, t_env *e);
@@ -152,5 +160,8 @@ void				wall_color(t_env *e);
 void				get_fps(t_env *e);
 void				move_player(t_env *e);
 void				show_error(int n);
+int					show_menu(t_env *e);
+void				reset_game(t_env *e);
+void				save_game(t_env *e);
 
 #endif

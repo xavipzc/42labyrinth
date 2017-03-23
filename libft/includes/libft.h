@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 12:43:12 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/01/19 12:55:50 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/22 17:00:57 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ int					ft_intlen(int n);
 char				*ft_strndup(const char *s1, size_t n);
 void				ft_swap(int *a, int *b);
 void				ft_putnendl(int n);
+void				ft_putnendl_fd(int n, int fd);
 
 #endif

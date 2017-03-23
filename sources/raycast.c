@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:25:17 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/17 14:56:19 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:14:40 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ int			loop_hook(t_env *e)
 	x = 0;
 	if (e->img_ptr != NULL)
 		mlx_destroy_image(e->mlx_ptr, e->img_ptr);
-	e->img_ptr = mlx_new_image(e->mlx_ptr, e->img.width, e->img.height);
+	if (!(e->img_ptr = mlx_new_image(e->mlx_ptr, e->img.width, e->img.height)))
+		show_error(4);
 	while (x < W_WIDTH)
 	{
 		init_ray(e, x);
@@ -95,5 +96,7 @@ int			loop_hook(t_env *e)
 	get_fps(e);
 	move_player(e);
 	mlx_put_image_to_window(e->mlx_ptr, e->mlx_win, e->img_ptr, 0, 0);
+	if (e->menu.on)
+		show_menu(e);
 	return (0);
 }

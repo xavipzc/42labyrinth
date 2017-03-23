@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/17 15:06:19 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/22 13:59:09 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	wall_color(t_env *e)
 	if (MAP[R_MAP_X][R_MAP_Y] == 5)
 		e->color = 0xFFFF00;
 	if (SIDE == 1)
-		e->color = e->color / 2;
+		e->color /= 2;
 }
