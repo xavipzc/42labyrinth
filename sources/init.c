@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 17:15:21 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 17:31:31 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void	init_last_position(t_env *e)
 		show_error(3);
 	POS_Y = ft_atoi(data);
 	ft_strdel(&data);
-	close(fd);
+	if (close(fd) == -1)
+		show_error(3);
 }
 
 /*

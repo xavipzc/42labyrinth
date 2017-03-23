@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:16:23 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 17:15:10 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 17:40:04 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			get_fps(t_env *e)
 	OLD_TIME = TIME;
 	TIME = get_tick_count();
 	frame_time = (TIME - OLD_TIME) / 1000.0;
-	MOVE_SPEED = frame_time * 5.0;
+	MOVE_SPEED = frame_time * 4.0;
 	ROT_SPEED = frame_time * 2.0;
 }
 
@@ -68,8 +68,10 @@ void			save_game(t_env *e)
 {
 	int fd;
 
-	fd = open("data/save.wolf", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+	if (!(fd = open("data/save.wolf", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR)))
+		show_error(3);
 	ft_putnendl_fd((int)fabs(POS_X), fd);
 	ft_putnendl_fd((int)fabs(POS_Y), fd);
-	close(fd);
+	if (close(fd) == -1)
+		show_error(3);
 }

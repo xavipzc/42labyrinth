@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 17:08:50 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 17:32:24 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int		key_release(int key, t_env *e)
 
 int		quit_window(t_env *e)
 {
+	save_game(e);
 	mlx_destroy_window(e->mlx_ptr, e->mlx_win);
 	exit(EXIT_SUCCESS);
 	return (0);
