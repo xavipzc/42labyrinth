@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:16:23 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/22 17:14:39 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 17:15:10 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ void			get_fps(t_env *e)
 	ROT_SPEED = frame_time * 2.0;
 }
 
+/*
+** Save & Reset the game
+*/
+
+void		is_savefile(t_env *e)
+{
+	int fd;
+
+	if ((fd = open("data/save.wolf", O_RDONLY)) == -1)
+		e->save_file = 0;
+	else
+		e->save_file = 1;
+	close(fd);
+}
+
 void			reset_game(t_env *e)
 {
 	POS_X = 22;
@@ -53,13 +68,8 @@ void			save_game(t_env *e)
 {
 	int fd;
 
-	fd = open("save.wolf", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
-	ft_putnendl_fd((int)POS_X, fd);
-	ft_putnendl_fd((int)POS_Y, fd);
-	ft_putnendl_fd((int)DIR_X, fd);
-	ft_putnendl_fd((int)DIR_Y, fd);
-	ft_putnendl_fd((int)PLANE_X, fd);
-	ft_putnendl_fd((int)PLANE_Y, fd);
-	ft_putnendl_fd((int)CAMERA_X, fd);
+	fd = open("data/save.wolf", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
+	ft_putnendl_fd((int)fabs(POS_X), fd);
+	ft_putnendl_fd((int)fabs(POS_Y), fd);
 	close(fd);
 }

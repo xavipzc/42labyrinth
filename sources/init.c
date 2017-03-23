@@ -6,11 +6,29 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/22 16:37:24 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 17:15:21 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+static void	init_last_position(t_env *e)
+{
+	int		fd;
+	char	*data;
+
+	if ((fd = open("data/save.wolf", O_RDONLY)) == -1)
+		show_error(3);
+	if ((get_next_line(fd, &data)) == -1)
+		show_error(3);
+	POS_X = ft_atoi(data);
+	ft_strdel(&data);
+	if ((get_next_line(fd, &data)) == -1)
+		show_error(3);
+	POS_Y = ft_atoi(data);
+	ft_strdel(&data);
+	close(fd);
+}
 
 /*
 ** Pos XY - The player position
@@ -20,8 +38,13 @@
 
 static void	init_player(t_env *e)
 {
-	POS_X = 22;
-	POS_Y = 12;
+	if (e->save_file == 1)
+		init_last_position(e);
+	else
+	{
+		POS_X = 22;
+		POS_Y = 12;
+	}
 	DIR_X = -1;
 	DIR_Y = 0;
 	PLANE_X = 0;
@@ -36,6 +59,7 @@ void		init_env(t_env *e, char *bin)
 	if (!(e->mlx_win = mlx_new_window(e->mlx_ptr, W_WIDTH, W_HEIGHT, bin)))
 		show_error(4);
 	e->img_ptr = NULL;
+	e->menu.menu_ptr = NULL;
 	e->img.width = W_WIDTH;
 	e->img.height = W_HEIGHT;
 	e->img.e = 0;

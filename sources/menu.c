@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:19:26 by PZC               #+#    #+#             */
-/*   Updated: 2017/03/22 16:30:34 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 17:26:25 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ static void	draw_menu(t_env *e)
 
 int		show_menu(t_env *e)
 {
-	e->menu.menu_ptr = mlx_new_image(e->mlx_ptr, e->img.width, e->img.height);
+	if (e->menu.menu_ptr != NULL)
+		mlx_destroy_image(e->mlx_ptr, e->menu.menu_ptr);
+	if (!(e->menu.menu_ptr = mlx_new_image(e->mlx_ptr, e->img.width, e->img.height)))
+		show_error(4);
 	draw_menu(e);
 	mlx_put_image_to_window(e->mlx_ptr, e->mlx_win, e->menu.menu_ptr, 0, 0);
-	if (e->menu.on == -1)
-	{
-		mlx_string_put(e->mlx_ptr, e->mlx_win, 20, 20, 0x333333, "  1. Continue");
-		mlx_string_put(e->mlx_ptr, e->mlx_win, 20, 40, 0xFFFFFF, "  2. Start");
-	}
+	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 200, 0x33FFD7, " [ M E N U ]");
+	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 220, 0x33FFD7, "     ---    ");
+	if (e->menu.on == -1 && e->save_file == 0)
+		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 260, 0x333333, "[1] Continue");
 	else
-	{
-		mlx_string_put(e->mlx_ptr, e->mlx_win, 20, 20, 0xFFFFFF, "  1. Continue");
-		mlx_string_put(e->mlx_ptr, e->mlx_win, 20, 40, 0xFFFFFF, "  2. New game");
-	}
-	mlx_string_put(e->mlx_ptr, e->mlx_win, 20, 60, 0xFFFFFF, "ESC. Quit");
+		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 260, 0xFFFFFF, "[1] Continue");
+	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 280, 0xFFFFFF, "[2] New game");
+	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 300, 0xFFFFFF, " [ESC] Quit");
 	return (0);
 }

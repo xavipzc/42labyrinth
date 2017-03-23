@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/22 17:04:51 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 17:08:50 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int		key_press(int key, t_env *e)
 
 static int	key_release_menu(int key, t_env *e)
 {
-	if (key == 41)
+	if (key == 41 && e->menu.on != -1)
 		e->menu.on = 1;
-	if (key == 83 && e->menu.on != -1)
+	if ((key == 83 || key == 18) && e->menu.on != -1)
 		e->menu.on = 0;
-	if (key == 84 && e->menu.on == -1)
+	if ((key == 84 || key == 19) && e->menu.on == -1)
 		e->menu.on = 0;
-	if (key == 84 && e->menu.on == 1)
+	if ((key == 84 || key == 19) && e->menu.on == 1)
 		reset_game(e);
 	return (0);
 }

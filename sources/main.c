@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 12:04:24 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/22 16:30:29 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 16:57:17 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ int			main(int ac, char **av)
 
 	if (ac < 2)
 	{
-		e.menu.on = -1;
+		is_savefile(&e);
+		if (e.save_file == 0)
+			e.menu.on = -1;
+		else
+			e.menu.on = 1;
 		readfile(&e);
 		init_env(&e, av[0] + 2);
 		mlx_loop_hook(e.mlx_ptr, loop_hook, &e);
