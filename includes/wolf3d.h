@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:55:45 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 15:43:22 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 18:43:11 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ typedef struct		s_env
 	double			move_s;
 	double			rot_s;
 	int				save_file;
+	int				music;
 	int				color;
 }					t_env;
 
@@ -165,5 +166,7 @@ int					show_menu(t_env *e);
 void				reset_game(t_env *e);
 void				save_game(t_env *e);
 void				is_savefile(t_env *e);
+void 				action_event(t_env *e);
+void 				music_append(t_env *e);
 
 #endif

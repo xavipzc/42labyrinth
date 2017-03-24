@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 17:32:24 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 21:40:30 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 ** 125 = Down arrow 	< MOVE DOWN
 ** 124 = Right arrow	< MOVE RIGHT
 ** 123 = Left arrow		< MOVE LEFT
-** 41 = M
-** 83 = 1
-** 84 = 2
+** 41 = M				< MENU
+** 83 = 1				< CONTINUE
+** 84 = 2				< NEW GAME
+** 49 = SPACE BAR 		< ACTION
 ** 53 = ESC 			< QUIT
 */
 
@@ -64,9 +65,12 @@ int		key_release(int key, t_env *e)
 		MOVE_RIGHT = 0;
 	if (key == 1)
 		SPEEDX2 = 0;
+	if (key == 49)
+		action_event(e);
 	if (key == 53)
 	{
 		save_game(e);
+		system("killall afplay");
 		mlx_destroy_window(e->mlx_ptr, e->mlx_win);
 		exit(EXIT_SUCCESS);
 	}
@@ -77,6 +81,7 @@ int		key_release(int key, t_env *e)
 int		quit_window(t_env *e)
 {
 	save_game(e);
+	system("killall afplay");
 	mlx_destroy_window(e->mlx_ptr, e->mlx_win);
 	exit(EXIT_SUCCESS);
 	return (0);

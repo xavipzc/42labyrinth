@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 12:03:26 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/22 14:51:07 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 19:17:14 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_vline(t_env *e, int x)
 		&e->img.sl, &e->img.e);
 	while (y < e->r.y_start)
 	{
-		ft_put_pixel(e->view, x, y, 0xFFFFFF);
+		ft_put_pixel(e->view, x, y, 0x33DAFF);
 		y++;
 	}
 	while (e->r.y_start <= e->r.y_end)
@@ -36,7 +36,7 @@ void	draw_vline(t_env *e, int x)
 	}
 	while (e->r.y_start < W_HEIGHT)
 	{
-		ft_put_pixel(e->view, x, e->r.y_start, 0x7e5f1a);
+		ft_put_pixel(e->view, x, e->r.y_start, 0x999999);
 		e->r.y_start++;
 	}
 }

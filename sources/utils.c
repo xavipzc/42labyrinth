@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:16:23 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 17:40:04 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 18:56:25 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		is_savefile(t_env *e)
 void			reset_game(t_env *e)
 {
 	POS_X = 22;
-	POS_Y = 12;
+	POS_Y = 22;
 	DIR_X = -1;
 	DIR_Y = 0;
 	PLANE_X = 0;

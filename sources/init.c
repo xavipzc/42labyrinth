@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 17:31:31 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/23 18:56:30 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	init_player(t_env *e)
 	else
 	{
 		POS_X = 22;
-		POS_Y = 12;
+		POS_Y = 22;
 	}
 	DIR_X = -1;
 	DIR_Y = 0;
@@ -66,6 +66,7 @@ void		init_env(t_env *e, char *bin)
 	e->img.e = 0;
 	e->img.bpp = 32;
 	e->img.sl = e->img.width * 4;
+	e->music = 0;
 	TIME = 0;
 	OLD_TIME = 0;
 	MOVE_UP = 0;

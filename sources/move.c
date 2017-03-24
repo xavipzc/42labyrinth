@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 12:37:43 by PZC               #+#    #+#             */
-/*   Updated: 2017/03/17 14:39:39 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/23 18:41:09 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void		move_player(t_env *e)
 		rot_player(e, 1);
 	if (MOVE_RIGHT)
 		rot_player(e, 2);
+	music_append(e);
 }
