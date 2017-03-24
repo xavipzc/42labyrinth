@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 12:03:26 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 19:17:14 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/24 12:45:13 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	ft_put_pixel(unsigned int* img, int x, int y, int color)
+void	ft_put_pixel(unsigned int *img, int x, int y, int color)
 {
 	img[(y * W_WIDTH) + x] = color;
 }
@@ -36,7 +36,7 @@ void	draw_vline(t_env *e, int x)
 	}
 	while (e->r.y_start < W_HEIGHT)
 	{
-		ft_put_pixel(e->view, x, e->r.y_start, 0x999999);
+		ft_put_pixel(e->view, x, e->r.y_start, GREY9);
 		e->r.y_start++;
 	}
 }

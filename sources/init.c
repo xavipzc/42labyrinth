@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 18:56:30 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/24 18:25:50 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,23 @@ static void	init_last_position(t_env *e)
 
 	if ((fd = open("data/save.wolf", O_RDONLY)) == -1)
 		show_error(3);
-	if ((get_next_line(fd, &data)) == -1)
+	if ((get_next_line(fd, &data)) != 1)
+	{
+		system("rm data/save.wolf");
 		show_error(3);
+	}
 	POS_X = ft_atoi(data);
-	ft_strdel(&data);
-	if ((get_next_line(fd, &data)) == -1)
+	if (POS_X < 1 || POS_X > 22)
 		show_error(3);
+	ft_strdel(&data);
+	if ((get_next_line(fd, &data)) != 1)
+	{
+		system("rm data/save.wolf");
+		show_error(3);
+	}
 	POS_Y = ft_atoi(data);
+	if (POS_Y < 1 || POS_Y > 22)
+		show_error(3);
 	ft_strdel(&data);
 	if (close(fd) == -1)
 		show_error(3);
@@ -67,6 +77,7 @@ void		init_env(t_env *e, char *bin)
 	e->img.bpp = 32;
 	e->img.sl = e->img.width * 4;
 	e->music = 0;
+	e->m.error = 0;
 	TIME = 0;
 	OLD_TIME = 0;
 	MOVE_UP = 0;

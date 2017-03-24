@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+         #
+#    By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/16 18:25:13 by xpouzenc          #+#    #+#              #
-#    Updated: 2017/03/23 18:42:41 by PZC              ###   ########.fr        #
+#    Updated: 2017/03/24 12:12:08 by xpouzenc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME = wolf3d
 SRCDIR = sources
 OBJDIR = objs
 INCDIR = includes\
-		 /usr/X11/include\
+		 /usr/local/include\
 		 libft/includes\
 
 # SOURCES
@@ -42,7 +42,7 @@ SRCS = \
 OBJS = $(SRC:.c=.o)
 
 # PREFIXES
-MLIBX =	-L/usr/X11/lib -lmlx -lm -framework OpenGL -framework AppKit
+MLIBX =	-L/usr/local/lib -lmlx -lm -framework OpenGL -framework AppKit
 LIBFT = -Llibft/ -lft
 
 # PATHS FOREACH
@@ -50,6 +50,8 @@ OBJP = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 INCP = $(foreach dir, $(INCDIR), -I$(dir))
 
 # COLORS
+CLN = \033[K
+1LN = \033[1A
 NOC = \033[0m
 OKC = \033[32m
 ERC = \033[31m
@@ -63,14 +65,14 @@ all: $(NAME)
 
 $(NAME): $(OBJP)
 	@make all -C libft/
-	@echo "\n$(OKC)  [OK] libft.$(NOC)"
+	@echo "\n\n$(OKC)  [OK] libft.$(NOC)"
 	@$(CC) $(CFLAGS) $^ $(INCP) $(LIBFT) -g $(MLIBX) -o $@
 	@echo "$(OKC)  [OK] wolf3d binary.$(NOC)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
 	@$(CC) $< $(CFLAGS) -c $(INCP) -o $@
-	@echo "$(NOC)  $@ is compiled."
+	@echo "$(CLN)$(NOC)  $@ is compiled.$(1LN)"
 
 clean:
 	@make clean -C libft/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:19:26 by PZC               #+#    #+#             */
-/*   Updated: 2017/03/23 17:26:25 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/24 18:17:02 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,30 @@ static void	draw_menu(t_env *e)
 		x = 0;
 		while (x < e->img.width)
 		{
-			ft_put_pixel(e->menu.menu_img, x, y, 0x26000000);
+			ft_put_pixel(e->menu.menu_img, x, y, 0x1A000000);
 			x++;
 		}
 		y++;
 	}
 }
 
-int		show_menu(t_env *e)
+int			show_menu(t_env *e)
 {
 	if (e->menu.menu_ptr != NULL)
 		mlx_destroy_image(e->mlx_ptr, e->menu.menu_ptr);
-	if (!(e->menu.menu_ptr = mlx_new_image(e->mlx_ptr, e->img.width, e->img.height)))
+	if (!(e->menu.menu_ptr = mlx_new_image(e->mlx_ptr, e->img.width,\
+		e->img.height)))
 		show_error(4);
 	draw_menu(e);
 	mlx_put_image_to_window(e->mlx_ptr, e->mlx_win, e->menu.menu_ptr, 0, 0);
-	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 200, 0x33FFD7, " [ M E N U ]");
-	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 220, 0x33FFD7, "     ---    ");
+	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 200, BLUE, " [ M E N U ]");
+	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 220, BLUE, "     ---    ");
 	if (e->menu.on == -1 && e->save_file == 0)
-		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 260, 0x333333, "[1] Continue");
+		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 260, GREY3, "[1] Continue");
 	else
-		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 260, 0xFFFFFF, "[1] Continue");
-	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 280, 0xFFFFFF, "[2] New game");
-	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 300, 0xFFFFFF, " [ESC] Quit");
+		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 260, WHITE, "[1] Continue");
+	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 280, WHITE, "[2] New game");
+	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 300, WHITE, " [ESC] Quit");
+	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 340, GREY9, "  [M] Menu");
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 13:05:31 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/22 13:29:37 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/24 18:01:32 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	fill_tab(t_env *e, char *line, int h)
 	i = 0;
 	j = 0;
 	MAP[h][j] = ft_atoi(&line[i]);
+	if (ft_isdigit(MAP[h][j] + '0') == 0)
+		show_error(3);
 	j++;
 	while (j < e->m.width)
 	{
@@ -27,6 +29,8 @@ static int	fill_tab(t_env *e, char *line, int h)
 			i++;
 		i++;
 		MAP[h][j] = ft_atoi(&line[i]);
+		if (ft_isdigit(MAP[h][j] + '0') == 0)
+			show_error(3);
 		j++;
 	}
 	return (0);

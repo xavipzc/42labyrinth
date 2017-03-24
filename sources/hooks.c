@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 21:40:30 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/24 18:31:46 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 ** 125 = Down arrow 	< MOVE DOWN
 ** 124 = Right arrow	< MOVE RIGHT
 ** 123 = Left arrow		< MOVE LEFT
-** 41 = M				< MENU
+** 46 = M				< MENU
 ** 83 = 1				< CONTINUE
 ** 84 = 2				< NEW GAME
 ** 49 = SPACE BAR 		< ACTION
 ** 53 = ESC 			< QUIT
 */
 
-int		key_press(int key, t_env *e)
+int			key_press(int key, t_env *e)
 {
 	if (key == 126 && e->menu.on == 0)
 		MOVE_UP = 1;
@@ -42,7 +42,7 @@ int		key_press(int key, t_env *e)
 
 static int	key_release_menu(int key, t_env *e)
 {
-	if (key == 41 && e->menu.on != -1)
+	if (key == 46 && e->menu.on != -1)
 		e->menu.on = 1;
 	if ((key == 83 || key == 18) && e->menu.on != -1)
 		e->menu.on = 0;
@@ -53,7 +53,7 @@ static int	key_release_menu(int key, t_env *e)
 	return (0);
 }
 
-int		key_release(int key, t_env *e)
+int			key_release(int key, t_env *e)
 {
 	if (key == 126)
 		MOVE_UP = 0;
@@ -70,7 +70,8 @@ int		key_release(int key, t_env *e)
 	if (key == 53)
 	{
 		save_game(e);
-		system("killall afplay");
+		if (e->music == 1)
+			system("killall afplay");
 		mlx_destroy_window(e->mlx_ptr, e->mlx_win);
 		exit(EXIT_SUCCESS);
 	}
@@ -78,10 +79,11 @@ int		key_release(int key, t_env *e)
 	return (0);
 }
 
-int		quit_window(t_env *e)
+int			quit_window(t_env *e)
 {
 	save_game(e);
-	system("killall afplay");
+	if (e->music == 1)
+			system("killall afplay");
 	mlx_destroy_window(e->mlx_ptr, e->mlx_win);
 	exit(EXIT_SUCCESS);
 	return (0);

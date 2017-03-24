@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:55:45 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/23 18:43:11 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/24 16:59:56 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@
 # include <sys/time.h>
 # include "libft.h"
 
-# include <stdio.h>
+# include <stdio.h> // suppr
 
-# define W_WIDTH  	800
-# define W_HEIGHT 	600
+# define W_WIDTH	800
+# define W_HEIGHT	600
+# define WHITE		0xFFFFFF
+# define BLACK		0x000000
+# define GREY3		0x333333
+# define GREY9		0x999999
+# define BLUE		0x33FFD7
 # define MAP		e->m.map
 
 # define POS_X		e->p.pos.x
@@ -119,6 +124,7 @@ typedef struct		s_map
 	int				**map;
 	int				width;
 	int				height;
+	int				error;
 }					t_map;
 
 typedef struct		s_menu
@@ -150,7 +156,7 @@ typedef struct		s_env
 }					t_env;
 
 void				draw_vline(t_env *e, int x);
-void				ft_put_pixel(unsigned int* img, int x, int y, int color);
+void				ft_put_pixel(unsigned int *img, int x, int y, int color);
 int					readfile(t_env *e);
 int					loop_hook(t_env *e);
 int					key_press(int key, t_env *e);
@@ -166,7 +172,7 @@ int					show_menu(t_env *e);
 void				reset_game(t_env *e);
 void				save_game(t_env *e);
 void				is_savefile(t_env *e);
-void 				action_event(t_env *e);
-void 				music_append(t_env *e);
+void				action_event(t_env *e);
+void				event_append(t_env *e);
 
 #endif
