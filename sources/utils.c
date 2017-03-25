@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:16:23 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/24 18:27:10 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/25 19:04:21 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void			is_savefile(t_env *e)
 {
 	int fd;
 
-	if ((fd = open("data/save.wolf", O_RDONLY)) == -1)
-		e->save_file = 0;
+	if ((fd = open("levels/save.wolf", O_RDONLY)) == -1)
+		SAVE = 0;
 	else
-		e->save_file = 1;
+		SAVE = 1;
 	close(fd);
 }
 
@@ -61,14 +61,16 @@ void			reset_game(t_env *e)
 	PLANE_X = 0;
 	PLANE_Y = 0.66;
 	CAMERA_X = 0;
-	e->menu.on = 0;
+	MENU = 0;
+	SUSPENS = 0;
+	WIN = 0;
 }
 
 void			save_game(t_env *e)
 {
 	int fd;
 
-	if (!(fd = open("data/save.wolf", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR)))
+	if (!(fd = open("levels/save.wolf", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR)))
 		show_error(3);
 	ft_putnendl_fd((int)fabs(POS_X), fd);
 	ft_putnendl_fd((int)fabs(POS_Y), fd);

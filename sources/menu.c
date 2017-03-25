@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:19:26 by PZC               #+#    #+#             */
-/*   Updated: 2017/03/24 18:17:02 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/25 19:04:04 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ static void	draw_menu(t_env *e)
 		x = 0;
 		while (x < e->img.width)
 		{
-			ft_put_pixel(e->menu.menu_img, x, y, 0x1A000000);
+			if (WIN == 1)
+				ft_put_pixel(e->menu.menu_img, x, y, BLACK);
+			else
+				ft_put_pixel(e->menu.menu_img, x, y, 0x1A000000);
 			x++;
 		}
 		y++;
@@ -41,9 +44,12 @@ int			show_menu(t_env *e)
 		show_error(4);
 	draw_menu(e);
 	mlx_put_image_to_window(e->mlx_ptr, e->mlx_win, e->menu.menu_ptr, 0, 0);
-	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 200, BLUE, " [ M E N U ]");
+	if (WIN == 1)
+		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 200, BLUE, "Y O U  W I N");
+	else
+		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 200, BLUE, " [ M E N U ]");
 	mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 220, BLUE, "     ---    ");
-	if (e->menu.on == -1 && e->save_file == 0)
+	if ((MENU == -1 && SAVE == 0) || WIN == 1)
 		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 260, GREY3, "[1] Continue");
 	else
 		mlx_string_put(e->mlx_ptr, e->mlx_win, 340, 260, WHITE, "[1] Continue");

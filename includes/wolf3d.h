@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:55:45 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/24 16:59:56 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/25 19:04:25 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,26 @@
 # include <sys/time.h>
 # include "libft.h"
 
-# include <stdio.h> // suppr
-
 # define W_WIDTH	800
 # define W_HEIGHT	600
 # define WHITE		0xFFFFFF
 # define BLACK		0x000000
+# define GREY1		0x111111
+# define GREY2		0x222222
 # define GREY3		0x333333
 # define GREY9		0x999999
 # define BLUE		0x33FFD7
+# define RED		0xFF0000
+# define GREEN		0x00FF00
+# define SKY		0x33DAFF
+# define COLOR		e->color
 # define MAP		e->m.map
+# define SAVE		e->save_file
+# define MENU		e->menu.on
+# define ERROR		e->m.error
+# define SUSPENS	e->m.zone
+# define SOUND		e->m.sound
+# define WIN		e->win
 
 # define POS_X		e->p.pos.x
 # define POS_Y		e->p.pos.y
@@ -124,7 +134,9 @@ typedef struct		s_map
 	int				**map;
 	int				width;
 	int				height;
+	int				sound;
 	int				error;
+	int				zone;
 }					t_map;
 
 typedef struct		s_menu
@@ -151,8 +163,8 @@ typedef struct		s_env
 	double			move_s;
 	double			rot_s;
 	int				save_file;
-	int				music;
 	int				color;
+	int				win;
 }					t_env;
 
 void				draw_vline(t_env *e, int x);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/24 18:25:50 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/25 19:03:52 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ static void	init_last_position(t_env *e)
 	int		fd;
 	char	*data;
 
-	if ((fd = open("data/save.wolf", O_RDONLY)) == -1)
+	if ((fd = open("levels/save.wolf", O_RDONLY)) == -1)
 		show_error(3);
 	if ((get_next_line(fd, &data)) != 1)
 	{
-		system("rm data/save.wolf");
+		system("rm levels/save.wolf");
 		show_error(3);
 	}
-	POS_X = ft_atoi(data);
-	if (POS_X < 1 || POS_X > 22)
-		show_error(3);
+	POS_X = ft_atoi(data) + 0.5;
 	ft_strdel(&data);
+	if ((int)POS_X < 1 || (int)POS_X > 22)
+		show_error(3);
 	if ((get_next_line(fd, &data)) != 1)
 	{
-		system("rm data/save.wolf");
+		system("rm levels/save.wolf");
 		show_error(3);
 	}
-	POS_Y = ft_atoi(data);
-	if (POS_Y < 1 || POS_Y > 22)
-		show_error(3);
+	POS_Y = ft_atoi(data) + 0.5;
 	ft_strdel(&data);
+	if ((int)POS_Y < 1 || (int)POS_Y > 22)
+		show_error(3);
 	if (close(fd) == -1)
 		show_error(3);
 }
@@ -49,7 +49,7 @@ static void	init_last_position(t_env *e)
 
 static void	init_player(t_env *e)
 {
-	if (e->save_file == 1)
+	if (SAVE == 1)
 		init_last_position(e);
 	else
 	{
@@ -76,8 +76,10 @@ void		init_env(t_env *e, char *bin)
 	e->img.e = 0;
 	e->img.bpp = 32;
 	e->img.sl = e->img.width * 4;
-	e->music = 0;
-	e->m.error = 0;
+	SOUND = 0;
+	ERROR = 0;
+	SUSPENS = 0;
+	WIN = 0;
 	TIME = 0;
 	OLD_TIME = 0;
 	MOVE_UP = 0;

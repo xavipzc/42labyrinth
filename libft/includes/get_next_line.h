@@ -6,7 +6,7 @@
 /*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 11:51:59 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/02/02 12:58:26 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/25 16:55:05 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include "libft.h"
 
-# define BUFF_SIZE 1024
+# define BUFF_SIZE 1
 
 int		get_next_line(const int fd, char **line);
 

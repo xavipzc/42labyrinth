@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 12:03:26 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/24 12:45:13 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/25 18:51:58 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ void	draw_vline(t_env *e, int x)
 	y = 0;
 	e->view = (unsigned int*)mlx_get_data_addr(e->img_ptr, &e->img.bpp,\
 		&e->img.sl, &e->img.e);
-	while (y < e->r.y_start)
+	while (y < R_Y_START)
 	{
-		ft_put_pixel(e->view, x, y, 0x33DAFF);
+		ft_put_pixel(e->view, x, y, SKY);
 		y++;
 	}
-	while (e->r.y_start <= e->r.y_end)
+	while (R_Y_START <= R_Y_END)
 	{
-		ft_put_pixel(e->view, x, e->r.y_start, e->color);
-		e->r.y_start++;
+		ft_put_pixel(e->view, x, R_Y_START, COLOR);
+		R_Y_START++;
 	}
-	while (e->r.y_start < W_HEIGHT)
+	while (R_Y_START < W_HEIGHT)
 	{
-		ft_put_pixel(e->view, x, e->r.y_start, GREY9);
-		e->r.y_start++;
+		ft_put_pixel(e->view, x, R_Y_START, GREY9);
+		R_Y_START++;
 	}
 }

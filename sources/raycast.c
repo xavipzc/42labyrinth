@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 17:25:17 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/24 19:00:21 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/25 18:42:22 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,7 @@ int			loop_hook(t_env *e)
 	mlx_put_image_to_window(e->mlx_ptr, e->mlx_win, e->img_ptr, 0, 0);
 	get_fps(e);
 	move_player(e);
-	if (e->menu.on)
+	if (MENU)
 		show_menu(e);
-	//printf("%d\n", e->music);
 	return (0);
 }

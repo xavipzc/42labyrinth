@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 13:05:31 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/24 18:01:32 by xpouzenc         ###   ########.fr       */
+/*   Updated: 2017/03/25 16:38:14 by PZC              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	init_map(t_env *e, char *line)
 
 	MAP = NULL;
 	e->m.height = ft_atoi(line);
-	if (!(MAP = (int**)malloc(sizeof(MAP) * e->m.height)))
+	if (!(MAP = (int**)malloc(sizeof(int*) * e->m.height)))
 		show_error(2);
 	i = 0;
 	while (line[i] != ',')
@@ -51,11 +51,10 @@ static int	init_map(t_env *e, char *line)
 	i = 0;
 	while (i < e->m.height)
 	{
-		if (!(MAP[i] = (int*)malloc(sizeof(MAP[i]) * e->m.width)))
+		if (!(MAP[i] = (int*)malloc(sizeof(int) * e->m.width)))
 			show_error(2);
 		i++;
 	}
-	MAP[i] = NULL;
 	return (0);
 }
 
