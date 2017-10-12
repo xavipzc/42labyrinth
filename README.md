@@ -2,8 +2,8 @@
 
 ## Description
 
-This is a FPS like inspired by the Wolfenstein 3D's game using ray-casting algorithm;
-The goal of this project was to represent a dynamic view of a labyrinth and move into it;
+This is a FPS like inspired by the Wolfenstein 3D's game using ray-casting algorithm.
+The goal of this project was to represent a dynamic view of a labyrinth and move into it.
 I turn it into a little game, you have to find the way out !
 
 ### Features
