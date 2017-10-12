@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: PZC <PZC@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: xpouzenc <xpouzenc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 11:48:30 by xpouzenc          #+#    #+#             */
-/*   Updated: 2017/03/25 19:03:36 by PZC              ###   ########.fr       */
+/*   Updated: 2017/03/27 13:50:24 by xpouzenc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ int			key_release(int key, t_env *e)
 int			quit_window(t_env *e)
 {
 	if (WIN == 0)
-			save_game(e);
-		if (SUSPENS == 1 && WIN == 0)
-			system("killall afplay");
+		save_game(e);
+	if (SUSPENS == 1 && WIN == 0)
+		system("killall afplay");
 	mlx_destroy_window(e->mlx_ptr, e->mlx_win);
 	exit(EXIT_SUCCESS);
 	return (0);
