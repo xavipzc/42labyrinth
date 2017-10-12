@@ -2,20 +2,18 @@
 
 ## Description
 
-This is an interfaced ray tracer engine on MAC OSX environment (we may support linux platforms later);
-
-This is a FPS like inspired by the Wolfenstein 3D's game using ray-casting technic;
+This is a FPS like inspired by the Wolfenstein 3D's game using ray-casting algorithm;
 The goal of this project was to represent a dynamic view of a labyrinth and move into it;
 I turn it into a little game, you have to find the way out !
 
 ### Features
 
-- Menu;
-- TXT file map;
-- Collision;
-- Fast mode;
-- Save last position;
-- Sounds effect;
+* Menu
+* TXT file map
+* Collision
+* Fast mode
+* Save last position
+* Sounds effect
 
 ### Environment
 
@@ -36,19 +34,32 @@ $> sudo cp mlx.h /usr/X11/include
 $> sudo cp libmlx.a /usr/X11/lib
 ```
 
+You can remove the .tgz and the minilibx_macos folder
+
 ## Launch binary
 
 ``` bash
 $> make fclean && make && ./wolf3d
 ```
 
+## How to play (key event)
+
+* [Up] = MOVE UP
+* [Down] = MOVE DOWN
+* [Right] = MOVE RIGHT
+* [Left] = MOVE LEFT
+* [S] = Speed x2
+* [M] = MENU
+* [1] = CONTINUE
+* [2] = NEW GAME
+* [SPACE] = ACTION
+* [ESC] = QUIT
+
 ## Media
 
-![screen1](images/screen1.png)
-![screen2](images/screen2.png)
-![screen3](images/screen3.png)
-![screen4](images/screen4.png)
-![screen5](images/screen5.png)
+![screen1](.img/screen1.png)
+![screen2](.img/screen2.png)
+![screen3](.img/screen3.png)
 
 ## Authors
 
