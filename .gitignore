@@ -1,5 +1,6 @@
 # Ignore all .o and binary
 *.o
+*.a
 wolf3d
 
 # Ignore saving file
